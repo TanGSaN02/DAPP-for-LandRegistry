@@ -1,0 +1,9 @@
+{
+	"name": "azuredatafact110325",
+	"location": "centralus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "a7aa84ad-807d-446d-b0d9-76d7b9112c88",
+		"tenantId": "076cf937-11bf-4827-b3b1-9467d019f46f"
+	}
+}
