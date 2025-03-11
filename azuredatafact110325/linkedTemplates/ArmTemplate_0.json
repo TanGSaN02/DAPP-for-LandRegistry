@@ -1,0 +1,494 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "azuredatafact110325"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1'"
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://storageacc1103.dfs.core.windows.net/"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureDataLakeStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('AzureDataLakeStorage1_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('AzureDataLakeStorage1_accountKey')]"
+					}
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileName": "Crops_data.csv",
+						"fileSystem": "dataset"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "Dist Code",
+						"type": "String"
+					},
+					{
+						"name": "Year",
+						"type": "String"
+					},
+					{
+						"name": "State Code",
+						"type": "String"
+					},
+					{
+						"name": "State Name",
+						"type": "String"
+					},
+					{
+						"name": "Dist Name",
+						"type": "String"
+					},
+					{
+						"name": "RICE AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "RICE PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "RICE YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "WHEAT AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "WHEAT PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "WHEAT YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "KHARIF SORGHUM AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "KHARIF SORGHUM PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "KHARIF SORGHUM YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "RABI SORGHUM AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "RABI SORGHUM PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "RABI SORGHUM YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "SORGHUM AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "SORGHUM PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "SORGHUM YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "PEARL MILLET AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "PEARL MILLET PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "PEARL MILLET YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "MAIZE AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "MAIZE PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "MAIZE YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "FINGER MILLET AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "FINGER MILLET PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "FINGER MILLET YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "BARLEY AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "BARLEY PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "BARLEY YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "CHICKPEA AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "CHICKPEA PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "CHICKPEA YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "PIGEONPEA AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "PIGEONPEA PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "PIGEONPEA YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "MINOR PULSES AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "MINOR PULSES PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "MINOR PULSES YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "GROUNDNUT AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "GROUNDNUT PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "GROUNDNUT YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "SESAMUM AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "SESAMUM PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "SESAMUM YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "RAPESEED AND MUSTARD AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "RAPESEED AND MUSTARD PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "RAPESEED AND MUSTARD YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "SAFFLOWER AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "SAFFLOWER PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "SAFFLOWER YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "CASTOR AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "CASTOR PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "CASTOR YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "LINSEED AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "LINSEED PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "LINSEED YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "SUNFLOWER AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "SUNFLOWER PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "SUNFLOWER YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "SOYABEAN AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "SOYABEAN PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "SOYABEAN YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "OILSEEDS AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "OILSEEDS PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "OILSEEDS YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "SUGARCANE AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "SUGARCANE PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "SUGARCANE YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "COTTON AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "COTTON PRODUCTION (1000 tons)",
+						"type": "String"
+					},
+					{
+						"name": "COTTON YIELD (Kg per ha)",
+						"type": "String"
+					},
+					{
+						"name": "FRUITS AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "VEGETABLES AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "FRUITS AND VEGETABLES AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "POTATOES AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "ONION AREA (1000 ha)",
+						"type": "String"
+					},
+					{
+						"name": "FODDER AREA (1000 ha)",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/DelimitedText2')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureDataLakeStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "dataset-copy"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureDataLakeStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy_dataset",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobFSReadSettings",
+									"recursive": true,
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "DelimitedTextSink",
+								"storeSettings": {
+									"type": "AzureBlobFSWriteSettings"
+								},
+								"formatSettings": {
+									"type": "DelimitedTextWriteSettings",
+									"quoteAllText": true,
+									"fileExtension": ".txt"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"typeConversion": true,
+								"typeConversionSettings": {
+									"allowDataTruncation": true,
+									"treatBooleanAsNumber": false
+								}
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "DelimitedText1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "DelimitedText2",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/DelimitedText1')]",
+				"[concat(variables('factoryId'), '/datasets/DelimitedText2')]"
+			]
+		}
+	]
+}
