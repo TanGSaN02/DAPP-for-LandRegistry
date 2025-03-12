@@ -40,7 +40,7 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "Excel2",
+						"referenceName": "Excel3",
 						"type": "DatasetReference"
 					}
 				],
