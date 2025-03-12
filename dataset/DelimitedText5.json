@@ -10,6 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
+				"fileName": "Crops_data.csv",
 				"fileSystem": "dataset2"
 			},
 			"columnDelimiter": ",",
