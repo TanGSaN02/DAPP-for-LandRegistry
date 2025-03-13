@@ -12,14 +12,7 @@
 						"value": "@variables('adf_variable')",
 						"type": "Expression"
 					},
-					"activities": [
-						{
-							"name": "If Condition1",
-							"type": "IfCondition",
-							"dependsOn": [],
-							"userProperties": []
-						}
-					]
+					"isSequential": true
 				}
 			}
 		],
