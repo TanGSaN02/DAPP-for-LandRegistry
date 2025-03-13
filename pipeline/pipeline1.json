@@ -13,6 +13,9 @@
 			"adf_variable": {
 				"type": "String",
 				"defaultValue": "[\"vasu\",\"hemanth\",\"varshitha\",\"aarya\",\"anusha\"]"
+			},
+			"for each iterator": {
+				"type": "String"
 			}
 		},
 		"annotations": []
