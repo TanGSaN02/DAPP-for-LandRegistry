@@ -9,6 +9,12 @@
 				"userProperties": []
 			}
 		],
+		"variables": {
+			"adf_variable": {
+				"type": "String",
+				"defaultValue": "['vasu hemanth varshitha aarya anusha"
+			}
+		},
 		"annotations": []
 	}
 }
